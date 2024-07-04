@@ -1,6 +1,8 @@
-name: Ejemplo de Flujo de Trabajo
+name: Flujo de Trabajo Básico
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
 
 jobs:
   build:
@@ -9,11 +11,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Saludo personalizado
-      id: saludo
-      uses: ploopez/tuAccion@v1
-      with:
-        quien: 'GitHub Actions'
-
-    - name: Obtener el saludo
-      run: echo "El saludo fue ${{ steps.saludo.outputs.saludo }}"
+    - name: Imprimir Hola Mundo
+      run: echo Hola, mundo!
