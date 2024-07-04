@@ -1,0 +1,19 @@
+name: 'Saludo Personalizado'
+description: 'Devuelve un saludo personalizado'
+inputs:
+  nombre:
+    description: 'Nombre para el saludo'
+    required: true
+    default: 'Mundo'
+outputs:
+  saludo:
+    description: 'El saludo personalizado'
+    value: ${{ steps.saludo.outputs.resultado }}
+runs:
+  using: 'composite'
+  steps:
+    - id: saludo
+      run: |
+        echo "Hola, ${{ inputs.nombre }}!"
+        echo "::set-output name=resultado::Hola, ${{ inputs.nombre }}!"
+      shell: bash

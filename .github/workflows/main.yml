@@ -1,15 +1,18 @@
-name: Flujo de Trabajo Básico
+name: Ejemplo de Uso de Acción Personalizada
 
-on:
-  push:
-    branches: [ main ]
+on: [push]
 
 jobs:
-  build:
+  saludo_job:
     runs-on: ubuntu-latest
-
+    name: Un job que usa la acción de saludo
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Imprimir Hola Mundo
-      run: echo Hola, mundo!
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Saludo personalizado
+      id: mi_saludo
+      uses: ploopez/actions/.github/actions/action.yml@main
+      with:
+        nombre: 'GitHub Actions'
+    - name: Usar el saludo
+      run: echo "El saludo fue '${{ steps.mi_saludo.outputs.saludo }}'"
