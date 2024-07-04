@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v2
     - name: Saludo personalizado
       id: mi_saludo
-      uses: ploopez/actions/.github/actions/action.yml@main
+      uses: ploopez/actions/.github/actions@main
       with:
         nombre: 'GitHub Actions'
     - name: Usar el saludo
