@@ -1,0 +1,13 @@
+name: 'Mostrar Mensaje'
+description: 'Una acción que devuelve un mensaje.'
+inputs: {}
+outputs:
+  message:
+    description: 'El mensaje generado por la acción'
+    value: ${{ steps.create_message.outputs.message }}
+runs:
+  using: 'composite'
+  steps:
+    - id: create_message
+      name: Generate Message
+      run: echo "::set-output name=message::La acción tiene un coche rojo"

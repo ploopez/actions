@@ -1,0 +1,19 @@
+name: Use Simplified Custom Action
+
+on: [push]
+
+jobs:
+  call_custom_action:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Call Custom Action
+      id: custom_action
+      uses: ./.github/actions/action2
+
+    - name: Print the output
+      run: |
+        echo "El mensaje de la acción es: ${{ steps.custom_action.outputs.message }}"
