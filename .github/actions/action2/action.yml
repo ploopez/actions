@@ -4,12 +4,11 @@ inputs: {}
 outputs:
   message:
     description: 'El mensaje generado por la acción'
-    # No es necesario poner 'value' en la definición de outputs para acciones de tipo composite
 
 runs:
   using: 'composite'
   steps:
-    - id: create_message
+    - id: generate_message
       name: Generate Message
-      run: echo "La acción tiene un coche rojo" # Nota: No necesitas "::set-output" en acciones de tipo composite
-      shell: bash # Asegúrate de especificar el shell si estás usando comandos en bash
+      run: echo "message=La acción tiene un coche rojo" >> $GITHUB_ENV
+      shell: bash
