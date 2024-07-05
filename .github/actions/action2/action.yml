@@ -12,3 +12,8 @@ runs:
       name: Generate Message
       run: echo "message=La acción tiene un coche rojo" >> $GITHUB_ENV
       shell: bash
+
+    - id: set_output
+      name: Set Output
+      run: echo "message=${{ env.message }}" >> $GITHUB_OUTPUT
+      shell: bash
