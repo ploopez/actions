@@ -1,0 +1,12 @@
+# .github/workflows/llamar_saludo.yml
+
+name: Llamar Saludo Personalizado
+
+on:
+  push:
+    branches:
+      - main # O cualquier rama en la que desees que se dispare este flujo de trabajo
+
+jobs:
+  llamado_saludo:
+    uses: ./.github/workflows/saludo.yml
