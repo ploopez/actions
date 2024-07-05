@@ -1,6 +1,7 @@
 name: Ejemplo de Uso de Acción Personalizada
 
-on: [push]
+on:
+  workflow_call:
 
 jobs:
   saludo_job:
