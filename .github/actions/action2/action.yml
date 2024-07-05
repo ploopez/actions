@@ -4,10 +4,12 @@ inputs: {}
 outputs:
   message:
     description: 'El mensaje generado por la acción'
-    value: ${{ steps.create_message.outputs.message }}
+    # No es necesario poner 'value' en la definición de outputs para acciones de tipo composite
+
 runs:
   using: 'composite'
   steps:
     - id: create_message
       name: Generate Message
-      run: echo "::set-output name=message::La acción tiene un coche rojo"
+      run: echo "La acción tiene un coche rojo" # Nota: No necesitas "::set-output" en acciones de tipo composite
+      shell: bash # Asegúrate de especificar el shell si estás usando comandos en bash
