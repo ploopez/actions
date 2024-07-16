@@ -1,6 +1,7 @@
 name: Use Simplified Custom Action
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
   call_custom_action:
