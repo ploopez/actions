@@ -1,7 +1,4 @@
-FROM node:14
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 8080
-CMD ["node", "app.js"]
+FROM ubuntu:20.04
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y curl vim
+CMD ["bash"]
