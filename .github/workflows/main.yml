@@ -11,8 +11,9 @@ jobs:
   show-secret:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Use Custom Action to Show Secret
         uses: stemdo-labs/actions/show-secret-value@show-secret-value
         with:
