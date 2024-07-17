@@ -22,3 +22,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           context: '.'
+
+      - name: Output Docker image info
+        run: echo "Docker image URL ${{ steps.docker_build.outputs.image_url }}"
