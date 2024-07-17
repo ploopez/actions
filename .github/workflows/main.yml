@@ -8,6 +8,9 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+
+    outputs:
+      image_name: ${{ steps.docker_build.outputs.image_name }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -23,5 +26,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           context: '.'
 
-      - name: Print Docker Image Name
-        run: echo "The Docker image name is ${{ steps.docker_build.outputs.image_name }}"
+      - name: Print Image input (extract version)
+        run: echo "La version que se va a taggear es ${{ steps.docker_build.outputs.image_name }}"
