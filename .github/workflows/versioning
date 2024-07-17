@@ -1,0 +1,20 @@
+name: Version Bump
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Bump version and tag
+        uses: stemdo-labs/actions/semantic-versioning@main
+        with:
+          file_path: 'composer.json' 
+          increment_type: 'minor'    
