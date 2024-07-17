@@ -8,16 +8,12 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    
-    outputs:
-      image_url: ${{ steps.build_and_push.outputs.image_url }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Build and push Docker image
-        id: build_and_push
+        id: docker_build
         uses: stemdo-labs/actions/build-and-push-docker-image@main
         with:
           registry_url: 'docker.io'
@@ -27,5 +23,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           context: '.'
 
-      - name: Output Docker image info
-        run: echo "Docker image URL ${{ steps.build_and_push.outputs.image_url }}"
+      - name: Print Docker Image Name
+        run: echo "The Docker image name is ${{ steps.docker_build.outputs.image_name }}"
