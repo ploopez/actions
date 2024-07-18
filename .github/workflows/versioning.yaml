@@ -1,9 +1,12 @@
 name: Version Bump
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'The type of release: major, minor, patch'
+        required: true
+        default: 'patch'
 
 jobs:
   bump-version:
@@ -17,4 +20,4 @@ jobs:
         uses: stemdo-labs/actions/semantic-versioning@main
         with:
           file_path: 'composer.json' 
-          increment_type: 'minor'    
+          increment_type: ${{ github.event.inputs.release_type }}
