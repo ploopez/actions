@@ -11,10 +11,10 @@ on:
         description: 'The key to find the version in the file'
         required: true
         default: 'version'
-      #bump-type:
-      #  description: 'Type of version bump: major, minor, or patch'
-      #  required: true
-      #  default: 'patch'
+      bump-type:
+        description: 'Type of version bump: major, minor, or patch'
+        required: true
+        default: 'patch'
 
 jobs:
   update-version:
