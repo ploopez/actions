@@ -1,12 +1,9 @@
 {
   "scheme": "semantic",
-  
-  // file where the current version can be found
-  "versionFile": "./composer.json", 
+  "versionFile": "./composer.json",
   "files": [
     {
       "path": "./composer.json"
-      //"line": // optional line number if needed
     }
   ],
   "rules": [
@@ -30,4 +27,5 @@
         "build"
       ]
     }
-  ]}
+  ]
+}
