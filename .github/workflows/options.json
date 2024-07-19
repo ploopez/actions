@@ -6,7 +6,7 @@
   "files": [
     {
       "path": "./composer.json"
-      "line": // optional line number if needed
+      //"line": // optional line number if needed
     }
   ],
   "rules": [
