@@ -15,4 +15,4 @@ jobs:
         uses: michmich112/version-bumper@v1.0.1
         with:
           options-file: "./.github/workflows/options.json"
-          github-token: ${{ secrets.PAT_TOKEN }}
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
