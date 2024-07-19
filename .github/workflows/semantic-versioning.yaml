@@ -28,4 +28,4 @@ jobs:
         with:
           file: ${{ github.event.inputs.file }}
           version-key: ${{ github.event.inputs.version-key }}
-          #bump-type: ${{ github.event.inputs.bump-type }}
+          bump-type: ${{ github.event.inputs.bump-type }}
