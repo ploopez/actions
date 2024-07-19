@@ -1,26 +1,31 @@
-name: Release
+name: 3. Update Version (semantic versioning)
 
 on:
   workflow_dispatch:
     inputs:
-      release_type:
-        description: 'The type of release: major, minor, patch'
+      file:
+        description: 'Path to the file containing the version'
+        required: true
+        default: 'package.json'
+      version-key:
+        description: 'The key to find the version in the file'
+        required: true
+        default: 'version'
+      bump-type:
+        description: 'Type of version bump: major, minor, or patch'
         required: true
         default: 'patch'
 
 jobs:
-  release:
+  update-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-
-      - name: Bump version and push tag
+      - name: Update version
         uses: stemdo-labs/actions/semantic-versioning@main
         with:
-          release_type: ${{ github.event.inputs.release_type }}
+          file: ${{ github.event.inputs.file }}
+          version-key: ${{ github.event.inputs.version-key }}
+          bump-type: ${{ github.event.inputs.bump-type }}
