@@ -2,10 +2,10 @@
   "scheme": "semantic",
   
   // file where the current version can be found
-  "versionFile": "./package.json", 
+  "versionFile": "./composer.json", 
   "files": [
     {
-      "path": // path to file containing version to be updated
+      "path": "./composer.json"
       "line": // optional line number if needed
     }
   ],
