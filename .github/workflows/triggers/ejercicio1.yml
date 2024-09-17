@@ -2,7 +2,7 @@ name: Abrir pull request
 
 on: 
   pull_request:
-    types: [opened]
+    types: [closed]
 
 jobs:
   build:
