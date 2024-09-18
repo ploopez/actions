@@ -1,0 +1,44 @@
+name: Config Validation and Conditional Deployment
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  validate_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Comprobar que el json existe
+      run: |
+        if [ ! -f "config.json" ]; then
+          echo "No se ha encontrado el archivo config.json!"
+          exit 1
+        fi
+
+    - name: Extraer la version del config.json
+      id: validate_json
+      run: |
+        VERSION=$(cat config.json | jq -r '.version')
+        if [ "$VERSION" == "null" ] || [ -z "$VERSION" ]; then
+          echo "config.json is invalid or 'version' is missing"
+          exit 1
+        fi
+        echo "Valid config.json with version: $VERSION"
+        echo "::set-output name=app_version::$VERSION"
+
+    - name: despliegue condicional
+      run: |
+        if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+          echo "Simulando despliegue en produccion..."
+          echo "Desplegando versión ${{ steps.validate_json.outputs.app_version }} en producción"
+        elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
+          echo "Simulando despliegue en desarrollo..."
+          echo "Desplegando version ${{ steps.validate_json.outputs.app_version }} en desarrollo"
+        else
+          echo "No se lleva a cabo porque no es una rama seleccionada."
