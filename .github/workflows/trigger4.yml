@@ -3,7 +3,7 @@ name: Sheduler
 on:
   workflow_dispatch: 
   schedule:
-    - cron: '15 12 * * *'
+    - cron: '00 12 * * *'
 
 jobs:
   hora_e_impresion:
