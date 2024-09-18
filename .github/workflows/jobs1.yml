@@ -30,5 +30,5 @@ jobs:
         git commit -m "Add testfile.txt via GitHub Actions"
         git push
       env:
-        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+        GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
       
