@@ -21,7 +21,7 @@ jobs:
 
     - name: Check confirmation
       run: |
-        if [ "${{ github.event.inputs.confirm }}" == "yes" ]; then
+        if [ "${{ github.event.inputs.confirmar }}" == "yes" ]; then
           echo "Perfecto, confirmacion recibida."
         else
           echo "No se procederá entonces."
