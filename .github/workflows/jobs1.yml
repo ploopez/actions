@@ -26,8 +26,8 @@ jobs:
       env:
         GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
       run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "ploopez"
+        git config --global user.email "plopez@stemdo.io"
         git add archivo.txt
         git commit -m "Add testfile.txt via GitHub Actions"
         git pull origin 
