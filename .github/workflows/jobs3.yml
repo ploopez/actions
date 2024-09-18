@@ -1,0 +1,26 @@
+name: Configurar un workflow con dos Jobs (2)
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}  # Define el sistema operativo desde la matriz
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest] 
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Show date and time
+      run: date
+
+    - name: List files in current directory 
+      run: ls
+
+
+      
