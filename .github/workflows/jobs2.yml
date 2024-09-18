@@ -1,4 +1,4 @@
-name: Configurar un workflow con un solo Job (1)
+name: Configurar un workflow con dos Jobs (2)
 
 on:
   workflow_dispatch:
