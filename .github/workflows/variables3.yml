@@ -15,6 +15,10 @@ jobs:
     - name: Imprimir el numero aleatorio
       run: echo " El numero generado es $RANDOM_NUMBER"
 
-    - name: Condicional para comprobar si sale +/- 50
+    - name: Condicional para comprobar si sale + 50
       if: ${{ env.RANDOM_NUMBER > 50 }}
       run: echo "El numero $RANDOM_NUMBER es mayor a 50"
+
+    - name: Condicional para comprobar si sale - 50
+      if: ${{ env.RANDOM_NUMBER < 50 }}
+      run: echo "El numero $RANDOM_NUMBER es menor a 50"
