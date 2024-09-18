@@ -1,0 +1,19 @@
+name: Workflow manual con input
+
+on: 
+  workflow_dispatch:
+    inputs:
+      mensaje:
+        description: 'Introduce un mensaje'
+        required: true
+
+jobs:
+  manual:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Imprimir mensaje
+      run: echo " ${{ github.event.inputs.mensaje }} "
