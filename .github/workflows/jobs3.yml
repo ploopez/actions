@@ -1,4 +1,4 @@
-name: Configurar un workflow con dos Jobs (2)
+name: Configurar un workflow en distintos SSOO (3)
 
 on:
   workflow_dispatch:
