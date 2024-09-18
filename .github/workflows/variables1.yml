@@ -1,0 +1,16 @@
+name: Declarar 2 variables de entorno
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  declarar_variables:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Define variables de entorno
+      run: echo "VAR1=Prueba1" >> $GITHUB_ENV &&  "VAR2=Prueba2" >> $GITHUB_ENV
+
+    - name: Usar variables de entorno
+      run: |
+        echo " $VAR1 $VAR2 "
