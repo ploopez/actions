@@ -1,0 +1,16 @@
+name: Sheduler
+
+on:
+  workflow_dispatch: 
+  schedule:
+    - cron: '15 12 * * *'
+
+jobs:
+  backup-and-upload:
+    runs-on: self-hosted
+    steps:
+      - name: Show Current Time
+        run: date
+
+      - name: Imprimir mensaje
+        run: echo "Scheduled job executed!"
