@@ -5,7 +5,6 @@ on:
       inputs:
         confirmar:
           description: '¿Quieres proceder?'
-          required: true
           type: choice
           options:
             - yes
