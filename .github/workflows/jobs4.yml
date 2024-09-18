@@ -26,3 +26,7 @@ jobs:
       run: |
         mkdir -p new_directory 
         mv test.txt new_directory/  
+
+#Al ejecutar el workflow, cuando el segundo job se ejecuta, intenta mover test.txt
+# sin embargo, este no tiene acceso al sistema de archivos creado por el primer job 
+# resultará en un error que indica que el archivo no se encuentra
