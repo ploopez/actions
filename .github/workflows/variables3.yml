@@ -1,0 +1,20 @@
+name: Crear un número aleatorio
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generar_numero:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Generar numero aleatorio
+      id: random_number
+      run: echo "RANDOM_NUMBER=$(( RANDOM % 100 ))" >> $GITHUB_ENV
+
+    - name: Imprimir el numero aleatorio
+      run: echo " El numero generado es $RANDOM_NUMBER"
+
+    - name: Condicional para comprobar si sale +/- 50
+      if: ${{ env.RANDOM_NUMBER > 50 }}
+      run: echo "El numero $RANDOM_NUMBER es mayor a 50"
