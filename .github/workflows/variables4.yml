@@ -42,3 +42,4 @@ jobs:
           echo "Desplegando version ${{ steps.validate_json.outputs.app_version }} en desarrollo"
         else
           echo "No se lleva a cabo porque no es una rama seleccionada."
+        fi
