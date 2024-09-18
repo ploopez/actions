@@ -23,12 +23,14 @@ jobs:
       run: ls -la
 
     - name: Commit and push changes
+      env:
+        GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add archivo.txt
         git commit -m "Add testfile.txt via GitHub Actions"
-        git push
-      env:
-        GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+        git pull origin 
+        git push origin
+        echo "Changes committed and pushed "
       
