@@ -1,0 +1,43 @@
+name: Configurar un workflow con un solo Job (1)
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Show date and time
+      run: date
+
+    - name: Create a text file
+      run: echo "Archivo creado de ejemplo para Github Actions" > archivo.txt
+
+    - name: List files in current directory 
+      run: ls -la
+
+    - name: Commit and push changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        git add archivo.txt
+        git commit -m "Add testfile.txt via GitHub Actions"
+        git push
+        echo "Changes committed and pushed "
+
+  deploy:
+      runs-on: ubuntu-latest
+      needs: build  
+
+      steps:
+      - name: Deployment Step
+        run: echo "Deploying the application..."
+      
