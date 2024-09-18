@@ -1,0 +1,16 @@
+name: Creacion de Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  crear_issue:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Crear issue
+      run: echo "Creada la Issue ${{ github.event.issue.title }} "
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
