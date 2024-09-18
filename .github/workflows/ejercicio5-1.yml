@@ -1,0 +1,22 @@
+name: ejercicio1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  definir_variables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Establecer el valor
+        run: |
+          var1=1
+          echo "var1 contiene: $var1"
+
+      - name: Establce el valor con variable entorno
+        env:
+          var2: 2
+        run: |
+          echo "Var2 contiene $var2"

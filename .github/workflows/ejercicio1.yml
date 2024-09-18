@@ -1,22 +1,14 @@
-name: ejercicio1
+name: Abrir pull request
 
-on:
-  workflow_dispatch:
+on: 
+  pull_request:
+    types: [opened]
 
 jobs:
-  definir_variables:
+  build:
     runs-on: ubuntu-latest
+
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Establecer el valor
-        run: |
-          var1=1
-          echo "var1 contiene: $var1"
-
-      - name: Establce el valor con variable entorno
-        env:
-          var2: 2
-        run: |
-          echo "Var2 contiene $var2"
+    - name: Checkout code
+      uses: actions/checkout@v2
