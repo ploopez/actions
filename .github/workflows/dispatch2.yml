@@ -1,19 +1,23 @@
-name: Workflow manual con input
+name: Workflow manual con input seleccion
 
 on: 
   workflow_dispatch:
     inputs:
-      mensaje:
-        description: 'Introduce un mensaje'
+      entorno:
+        description: 'Selecciona un entorno'
         required: true
+        type: choice
+        options:
+          - production
+          - staging 
 
 jobs:
-  manual:
+  imprimir_entorno:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Imprimir mensaje
-      run: echo " ${{ github.event.inputs.mensaje }} "
+    - name: Imprimir entorno
+      run: echo " ${{ github.event.inputs.entorno }} "

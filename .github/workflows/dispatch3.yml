@@ -1,0 +1,28 @@
+name: Workflow manual con input confirmacion
+
+on: 
+    workflow_dispatch:
+      inputs:
+        confirmar:
+          description: '¿Quieres proceder?'
+          required: true
+          type: choice
+          options:
+            - yes
+            - no 
+
+jobs: 
+  confirm_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Check confirmation
+      run: |
+        if [ "${{ github.event.inputs.confirm }}" == "yes" ]; then
+          echo "Perfecto, confirmacion recibida."
+        else
+          echo "No se procederá entonces."
+        fi
