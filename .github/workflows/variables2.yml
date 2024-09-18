@@ -1,0 +1,17 @@
+name: Configura un job que use un secreto definido en el repositorio
+
+on:
+  workflow_dispatch:
+
+jobs:
+  secret_job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Use secret in command
+      run: echo "El valor del ssecreto es $GITHUB_TOKEN "
+      env:
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
