@@ -34,7 +34,7 @@ jobs:
 
     - name: despliegue condicional
       run: |
-        if [[ "${{ github.ref }}" == "refs/heads/main"]]; then
+        if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
           echo "Simulando despliegue en produccion..."
           echo "Desplegando versión ${{ steps.validate_json.outputs.app_version }} en producción"
         elif [[ "${{ github.ref }}" == "refs/heads/develop" ]]; then
