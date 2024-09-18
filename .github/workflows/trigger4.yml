@@ -6,8 +6,8 @@ on:
     - cron: '15 12 * * *'
 
 jobs:
-  backup-and-upload:
-    runs-on: self-hosted
+  hora_e_impresion:
+    runs-on: ubuntu-latest
     steps:
       - name: Show Current Time
         run: date
