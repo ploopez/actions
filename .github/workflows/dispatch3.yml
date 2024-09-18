@@ -8,7 +8,7 @@ on:
           type: choice
           options:
             - yes
-            - no 
+            - no
 
 jobs: 
   confirm_job:
@@ -20,7 +20,7 @@ jobs:
 
     - name: Check confirmation
       run: |
-        if [ "${{ github.event.inputs.confirmar }}" == "yes" ]; then
+        if [ "${{ github.event.inputs.confirmar }}" == "true" ]; then
           echo "Perfecto, confirmacion recibida."
         else
           echo "No se procederá entonces."
