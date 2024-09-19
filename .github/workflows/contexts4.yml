@@ -22,7 +22,7 @@ jobs:
             echo "PR_BODY: $PR_BODY" >> pr-info.txt
           else
             echo "El título no contiene la palabra clave 'urgent'."
-            exit 1  # Fallar el job si no contiene la palabra clave
+            exit 1  
           fi
 
       - name: Crear el archivo pr-info.txt
