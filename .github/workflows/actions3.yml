@@ -1,0 +1,32 @@
+name: Subir y Descargar Artefacto
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload_artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hacer checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Subir archivo como artefacto
+        uses: actions/upload-artifact@v3
+        with:
+          name: mi-artefacto
+          path: mensaje.txt  
+
+  download_artifact:
+    runs-on: ubuntu-latest
+    needs: upload_artifact  
+
+    steps:
+      - name: Descargar artefacto
+        uses: actions/download-artifact@v3
+        with:
+          name: mi-artefacto
+
+      - name: Mostrar contenido del archivo
+        run: |
+          cat mensaje.txt 
