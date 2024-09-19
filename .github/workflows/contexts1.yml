@@ -1,0 +1,16 @@
+name: Imprimir información sobre el runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  info_runner:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name:  Imprimir información del runner
+        run: |
+          echo "Nombre del sistema operativo $RUNNER_OS"
+          echo "Arquitectura $(uname -m)"
+          echo "Espacio en disco disponible:"
+          df -h /
