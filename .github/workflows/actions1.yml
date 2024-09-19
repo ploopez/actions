@@ -1,0 +1,14 @@
+name: Crear Archivo de Texto
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create_file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Usar acción personalizada para crear un archivo
+        uses: ./.github/actions/crear_archivo
+        with:
+          message: 'Este es un mensaje personalizado en el archivo.'

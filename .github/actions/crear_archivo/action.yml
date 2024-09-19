@@ -1,0 +1,14 @@
+name: Crear archivo 
+description: 'Crea un archivo de texto en el directorio raíz del repositorio.'
+inputs:
+  message:
+    description: 'El mensaje a escribir en el archivo de texto.'
+    required: true
+    default: 'Mensaje por defecto'
+runs:
+  using: 'composite'
+  steps:
+    - name: Crear archivo de texto
+      run: |
+        echo "${{ inputs.message }}" > mensaje.txt
+        echo "Archivo mensaje.txt creado con el contenido: '${{ inputs.message }}'"
