@@ -1,0 +1,29 @@
+name: Despliegue Ficticio
+
+on:
+  push:
+    branches:
+      - main
+      - '*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Comprobar la rama y establecer la API key
+        id: set_api_key
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            echo "API_KEY=${{ secrets.PROD_API_KEY }}" >> $GITHUB_ENV
+            echo "Se está utilizando la API Key de producción."
+          else
+            echo "API_KEY=${{ secrets.STAGING_API_KEY }}" >> $GITHUB_ENV
+            echo "Se está utilizando la API Key de staging."
+          fi
+
+      - name: Realizar despliegue ficticio
+        run: |
+          echo "Desplegando usando la API Key $API_KEY"
+
+          
