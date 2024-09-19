@@ -46,8 +46,8 @@ jobs:
 
       - name: Configurar despliegue
         run: |
-          echo "API_URL=${{ secrets.API_URL }}"
-          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}"
+          echo "API_URL=${{ env.API_URL }}"
+          echo "LOG_LEVEL=${{ env.LOG_LEVEL }}"
 
       - name: Simular despliegue
         run: |
