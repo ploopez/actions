@@ -1,0 +1,26 @@
+name: Despliegue en Entorno
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: 'El entorno de despliegue (development, staging, production)'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment: ${{ inputs.environment }}
+
+    steps:
+      - name: Configurar entorno
+        run: |
+          echo "Desplegando en el entorno ${{ inputs.environment }}..."
+          echo "API_URL=${{ secrets.API_URL }}"
+          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}"
+
+      - name: Simular despliegue
+        run: |
+          echo "Desplegando en ${{ inputs.environment }} con API_URL=${{ secrets.API_URL }} y LOG_LEVEL=${{ secrets.LOG_LEVEL }}"
