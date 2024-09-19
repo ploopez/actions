@@ -1,0 +1,38 @@
+name: Validar Branch
+
+on:
+  workflow_call:
+    inputs:
+      tarea_principal:
+        description: 'La tarea principal a ejecutar'
+        required: true
+        type: string
+
+jobs:
+  validar_branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener nombre de la rama
+        id: obtener_rama
+        run: echo "branch_name=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+
+      - name: Validar si la rama comienza con "feature/"
+        id: validar
+        run: |
+          if [[ "${{ env.branch_name }}" == feature/* ]]; then
+            echo "La rama comienza con 'feature/'."
+          else
+            echo "Error: La rama no comienza con 'feature/'."
+            exit 1
+          fi
+
+  ejecutar_tarea_principal:
+    runs-on: ubuntu-latest
+    needs: validar_branch
+    if: success()  # Solo ejecuta si el job 'validar_branch' tuvo éxito
+
+    steps:
+      - name: Ejecutar tarea principal
+        run: |
+          echo "${{ inputs.tarea_principal }}"
