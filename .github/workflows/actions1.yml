@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Hacer checkout del repositorio
+        uses: actions/checkout@v2
+
       - name: Usar acción personalizada para crear un archivo
         uses: ./.github/actions/crear_archivo
         with:
