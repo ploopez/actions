@@ -1,0 +1,39 @@
+name: Verificación de Pull Request
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  comprobar_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar título de la Pull Request
+        id: check_title
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          PR_BODY="${{ github.event.pull_request.body }}"
+          echo "Título de la Pull Request: $PR_TITLE"
+
+          if [[ "$PR_TITLE" == *"urgent"* ]]; then
+            echo "El título contiene la palabra clave 'urgent'."
+            echo "PR_TITLE: $PR_TITLE" >> pr-info.txt
+            echo "PR_BODY: $PR_BODY" >> pr-info.txt
+          else
+            echo "El título no contiene la palabra clave 'urgent'."
+            exit 1  # Fallar el job si no contiene la palabra clave
+          fi
+
+      - name: Crear el archivo pr-info.txt
+        run: |
+          if [ -f pr-info.txt ]; then
+            echo "Archivo pr-info.txt creado con éxito."
+          else
+            echo "No se creó el archivo pr-info.txt."
+            exit 1
+          fi
+
+      - name: Mostrar contenido de pr-info.txt
+        run: |
+          cat pr-info.txt
