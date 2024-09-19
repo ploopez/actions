@@ -11,14 +11,14 @@ jobs:
       - name: Realizar taarea ficticia
         run: |
           echo "Realizando tarea ficticia..."
-          exit 0
-          #exit 1
+          #exit 0
+          exit 1
 
       - name: Enviar notificación
         run: |
-          JOB_STATUS=${{ job.status }}  # Obtener el estado del job
-          EVENT_NAME=${{ github.event_name }}  # Obtener el nombre del evento
-          NOTIFICATION_URL="https://example.com/notify"  # URL de notificación ficticia
+          JOB_STATUS=${{ job.status }}  
+          EVENT_NAME=${{ github.event_name }}  
+          NOTIFICATION_URL="https://example.com/notify"  
 
           echo "Enviando notificación a $NOTIFICATION_URL"
           echo "Estado del job: $JOB_STATUS"
