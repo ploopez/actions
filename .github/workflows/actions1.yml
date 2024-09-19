@@ -21,7 +21,7 @@ jobs:
             cat mensaje.txt
   
       - name: Subir el archivo como artefacto
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: mensaje-artefacto
           path: mensaje.txt
