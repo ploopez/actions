@@ -1,0 +1,26 @@
+name: Notificación de Estado
+
+on:
+  workflow_dispatch:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Realizar taarea ficticia
+        run: |
+          echo "Realizando tarea ficticia..."
+          exit 0
+          #exit 1
+
+      - name: Enviar notificación
+        run: |
+          JOB_STATUS=${{ job.status }}  # Obtener el estado del job
+          EVENT_NAME=${{ github.event_name }}  # Obtener el nombre del evento
+          NOTIFICATION_URL="https://example.com/notify"  # URL de notificación ficticia
+
+          echo "Enviando notificación a $NOTIFICATION_URL"
+          echo "Estado del job: $JOB_STATUS"
+          echo "Nombre del evento: $EVENT_NAME"
+          echo "Mensaje enviado: {\"status\":\"$JOB_STATUS\", \"event\":\"$EVENT_NAME\"}"
