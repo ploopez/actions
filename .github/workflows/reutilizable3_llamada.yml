@@ -7,30 +7,47 @@ on:
       - develop
       - release/*
 
-  workflow_dispatch:
+  workflow_dispatch:  # Permite ejecución manual del workflow
 
 jobs:
-  trigger-deploy:
+  determinar-entorno:
     runs-on: ubuntu-latest
 
+    outputs:
+      entorno: ${{ steps.set-entorno.outputs.entorno }}
+
     steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v3
-        
       - name: Determinar entorno de despliegue
-        id: determinar-entorno
+        id: set-entorno
         run: |
           if [[ "${GITHUB_REF}" == refs/heads/main ]]; then
-            echo "entorno=production" >> $GITHUB_ENV
+            echo "production" > entorno.txt
           elif [[ "${GITHUB_REF}" == refs/heads/develop ]]; then
-            echo "entorno=development" >> $GITHUB_ENV
+            echo "development" > entorno.txt
           elif [[ "${GITHUB_REF}" == refs/heads/release/* ]]; then
-            echo "entorno=staging" >> $GITHUB_ENV
+            echo "staging" > entorno.txt
           else
             echo "Error: Rama desconocida para despliegue" && exit 1
-          fi
 
-      - name: Llamar al workflow reutilizable para despliegue
-        uses: ./.github/workflows/reutilizable3.yml
-        with:
-          environment: ${{ env.entorno }}
+          entorno=$(cat entorno.txt)
+          echo "::set-output name=entorno::$entorno"
+
+  desplegar:
+    runs-on: ubuntu-latest
+    needs: determinar-entorno
+
+    environment: ${{ needs.determinar-entorno.outputs.entorno }}
+
+    steps:
+      - name: Imprimir entorno
+        run: |
+          echo "Desplegando en el entorno ${{ needs.determinar-entorno.outputs.entorno }}"
+
+      - name: Configurar despliegue
+        run: |
+          echo "API_URL=${{ secrets.API_URL }}"
+          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}"
+
+      - name: Simular despliegue
+        run: |
+          echo "Desplegando en ${{ needs.determinar-entorno.outputs.entorno }} con API_URL=${{ secrets.API_URL }} y LOG_LEVEL=${{ secrets.LOG_LEVEL }}"
