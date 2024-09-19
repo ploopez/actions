@@ -7,7 +7,7 @@ on:
       - develop
       - release/*
 
-  workflow_dispatch:  # Permite ejecución manual del workflow
+  workflow_dispatch:  
 
 jobs:
   determinar-entorno:
@@ -40,15 +40,17 @@ jobs:
     environment: ${{ needs.determinar-entorno.outputs.entorno }}
 
     steps:
-      - name: Imprimir entorno
+      - name: Obtener variables del entorno
+        run: |
+          echo "API_URL=${{ vars.API_URL }}"
+          echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}"
+
+      - name: Imprimir entorno y variables
         run: |
           echo "Desplegando en el entorno ${{ needs.determinar-entorno.outputs.entorno }}"
-
-      - name: Configurar despliegue
-        run: |
-          echo "API_URL=${{ env.API_URL }}"
-          echo "LOG_LEVEL=${{ env.LOG_LEVEL }}"
+          echo "API_URL=${{ vars.API_URL }}"
+          echo "LOG_LEVEL=${{ vars.LOG_LEVEL }}"
 
       - name: Simular despliegue
         run: |
-          echo "Desplegando en ${{ needs.determinar-entorno.outputs.entorno }} con API_URL=${{ secrets.API_URL }} y LOG_LEVEL=${{ secrets.LOG_LEVEL }}"
+          echo "Desplegando con API_URL=${{ vars.API_URL }} y LOG_LEVEL=${{ vars.LOG_LEVEL }}"
