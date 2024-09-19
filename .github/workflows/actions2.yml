@@ -1,0 +1,15 @@
+name: Mostrar Autor del Último Commit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mostrar_autor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Hacer checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Usar acción personalizada para mostrar el autor del último commit
+        uses: ./.github/actions/mostrar_autor
