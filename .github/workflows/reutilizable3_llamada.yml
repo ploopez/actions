@@ -25,6 +25,7 @@ jobs:
             echo "entorno=staging" >> $GITHUB_ENV
           else
             echo "Error: Rama desconocida para despliegue" && exit 1
+          fi
 
       - name: Llamar al workflow reutilizable para despliegue
         uses: ./.github/workflows/reutilizable3.yml
