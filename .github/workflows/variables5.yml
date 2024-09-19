@@ -38,7 +38,7 @@ jobs:
     needs: job1
 
     outputs:
-      version: ${{ steps.set_var3.outputs.var3 }}
+      var3: ${{ steps.set_var3.outputs.var3 }}
 
     steps:
       - name: Intenta imprimir el valor de var2
