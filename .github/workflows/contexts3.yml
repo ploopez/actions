@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Realizar taarea ficticia
+      - name: Realizar tarea ficticia
         run: |
           echo "Realizando tarea ficticia..."
           exit 0
