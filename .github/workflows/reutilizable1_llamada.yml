@@ -1,0 +1,9 @@
+name: Usar Workflow Reutilizable
+
+on:
+  workflow_dispatch:  
+jobs:
+  llamar_workflow_reutilizable:
+    uses: ./.github/workflows/reutilizable1.yml@main
+    with:
+      mensaje: "Hola, este es un mensaje desde el workflow reutilizable"

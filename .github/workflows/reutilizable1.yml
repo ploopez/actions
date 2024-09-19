@@ -1,0 +1,18 @@
+name: Workflow Reutilizable
+
+on:
+  workflow_call:  
+    inputs:
+      mensaje:
+        description: 'Esto es el primer ejercicio de reutilizables de Github Actions'
+        required: true
+        type: string
+
+jobs:
+  imprimir_mensaje:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Imprimir mensaje
+        run: |
+          echo "${{ inputs.mensaje }}"
