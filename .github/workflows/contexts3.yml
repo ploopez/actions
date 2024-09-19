@@ -11,8 +11,8 @@ jobs:
       - name: Realizar taarea ficticia
         run: |
           echo "Realizando tarea ficticia..."
-          #exit 0
-          exit 1
+          exit 0
+          #exit 1 si se activa este, falla la tarea
 
       - name: Enviar notificación
         run: |
