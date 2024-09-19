@@ -28,6 +28,7 @@ jobs:
             echo "staging" > entorno.txt
           else
             echo "Error: Rama desconocida para despliegue" && exit 1
+          fi
 
           entorno=$(cat entorno.txt)
           echo "::set-output name=entorno::$entorno"
