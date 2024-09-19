@@ -1,0 +1,75 @@
+name: Ejercicio 5 
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Definir e imprimir var1 (variable local)
+        run: |
+          var1=1
+          echo "JOB1: El valor de var1 es $var1"
+
+      - name: Definir var2 en el entorno de Github
+        run: |
+          echo "var2=2" >> $GITHUB_ENV
+
+      - name: Imprimir var2 en un paso diferente
+        run: |
+          echo "JOB1: El valor de var2 es $var2"
+  job2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Definir output var_step_output
+        id: output_step
+        run: | 
+          echo "::set-output name=var_step_output::valor"
+
+      - name: Imprimir var_Step_output en un paso posterior
+        run: |
+          echo "JOB2: El valor de var_step_output es ${{ steps.output_step.outputs.var_step_output }}"
+
+  job3: 
+    runs-on: ubuntu-latest
+    needs: job1
+
+    outputs:
+      version: ${{ steps.set_var3.outputs.var3 }}
+
+    steps:
+      - name: Intenta imprimir el valor de var2
+        run: |
+          echo "JOB3: El valor de var2 es $var2"
+          #No se va a poder imprimir var2 porque las variables de entorno definidas con $GITHUB_ENV
+          #no se comparten entre jobs
+
+      - name: Definir output var3 para compartir con otros jobs
+        id: set_var3
+        run: |
+          echo "::set-output name=var3::3"
+
+  job4:
+    runs-on: ubuntu-latest
+    needs: job3
+
+    steps:
+      - name: Imprimir el  valor de var3 desde job3 
+        run: |
+          echo "JOB4: El valor de var3 desde job3 es ${{ needs.job3.outputs.var3 }}"
+
+  job5:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Imprimir variables predefinidas de Github
+        run: |
+          echo "Nombre del repositorio ${{ github.repository }}"
+          echo "Nombre de la rama: ${{ github.ref }}"
+          echo "Nombre del evento que activó el workflow ${{ github.event_name }} "
+          
+      
+          
