@@ -15,3 +15,13 @@ jobs:
         uses: ./.github/actions/crear_archivo
         with:
           message: 'Este es un mensaje personalizado en el archivo.'
+     
+      - name: Mostrar contenido del archivo
+        run: |
+            cat mensaje.txt
+  
+      - name: Subir el archivo como artefacto
+        uses: actions/upload-artifact@v2
+        with:
+          name: mensaje-artefacto
+          path: mensaje.txt
