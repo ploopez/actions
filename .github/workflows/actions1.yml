@@ -20,8 +20,21 @@ jobs:
         run: |
             cat mensaje.txt
   
-      - name: Subir el archivo como artefacto
-        uses: actions/upload-artifact@v3
-        with:
-          name: mensaje-artefacto
-          path: mensaje.txt
+    #   - name: Subir el archivo como artefacto
+    #     uses: actions/upload-artifact@v3
+    #     with:
+    #       name: mensaje-artefacto
+    #       path: mensaje.txt
+
+      - name: Configurar Git
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+
+      - name: Hacer commit y push del archivo
+        run: |
+          git add mensaje.txt
+          git commit -m "Agregar mensaje.txt desde GitHub Actions"
+          git push origin HEAD
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
