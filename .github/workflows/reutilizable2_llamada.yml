@@ -1,0 +1,14 @@
+name: Usar Workflow Reutilizable 2
+
+on:
+  workflow_dispatch:
+    inputs:
+      tarea_principal:
+        description: 'Tarea a ejecutar si la rama es válida'
+        required: true
+
+jobs:
+  llamar_validar_branch:
+    uses: ./.github/workflows/reutilizable2.yml
+    with:
+      tarea_principal: ${{ github.event.inputs.tarea_principal }}
