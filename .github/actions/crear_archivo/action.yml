@@ -9,6 +9,7 @@ runs:
   using: 'composite'
   steps:
     - name: Crear archivo de texto
+      shell: bash
       run: |
         echo "${{ inputs.message }}" > mensaje.txt
         echo "Archivo mensaje.txt creado con el contenido: '${{ inputs.message }}'"
