@@ -1,0 +1,32 @@
+name: Desplegar en Entorno Correspondiente
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - release/*
+
+  workflow_dispatch:
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Determinar entorno de despliegue
+        id: determinar-entorno
+        run: |
+          if [[ "${GITHUB_REF}" == refs/heads/main ]]; then
+            echo "entorno=production" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF}" == refs/heads/develop ]]; then
+            echo "entorno=development" >> $GITHUB_ENV
+          elif [[ "${GITHUB_REF}" == refs/heads/release/* ]]; then
+            echo "entorno=staging" >> $GITHUB_ENV
+          else
+            echo "Error: Rama desconocida para despliegue" && exit 1
+
+      - name: Llamar al workflow reutilizable para despliegue
+        uses: ./.github/workflows/reutilizable3.yml
+        with:
+          environment: ${{ env.entorno }}
