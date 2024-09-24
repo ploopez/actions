@@ -13,8 +13,8 @@ jobs:
 
     - name: Simulación de un fallo
       run: 
-        echo "Simulacion de fallo desactivado"
-        #exit 1
+        echo "Simulacion de fallo activado"
+        exit 1
 
 
   deploy:
