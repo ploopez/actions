@@ -15,9 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
     - name: Check confirmation
       run: |
         if [ "${{ github.event.inputs.confirmar }}" == "true" ]; then

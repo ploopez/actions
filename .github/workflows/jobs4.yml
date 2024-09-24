@@ -28,5 +28,6 @@ jobs:
         mv test.txt new_directory/  
 
 #Al ejecutar el workflow, cuando el segundo job se ejecuta, intenta mover test.txt
-# sin embargo, este no tiene acceso al sistema de archivos creado por el primer job 
-# resultará en un error que indica que el archivo no se encuentra
+# sin embargo, el job  no encontrará el archivo test.txt porque no existe en 
+# en su entorno de ejecución y resultará en un error que indica que el archivo no se encuentra
+#Esto se debe a que los jobs de github acitons se ejecutan en entornos separados

@@ -12,8 +12,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
     - name: Imprimir mensaje
       run: echo " ${{ github.event.inputs.mensaje }} "

@@ -8,9 +8,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name:  Imprimir información del runner
+      
+      - name: Imprimir nombre del sistema operativo
         run: |
-          echo "Nombre del sistema operativo $RUNNER_OS"
-          echo "Arquitectura $(uname -m)"
-          echo "Espacio en disco disponible:"
-          df -h /
+          echo "Sistema operativo: ${{ runner.os }}"
+
+      - name: Imprimir arquitectura del runner
+        run: |
+          echo "Arquitectura: ${{ runner.arch }}"

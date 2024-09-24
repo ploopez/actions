@@ -27,7 +27,7 @@ jobs:
       - name: Definir output var_step_output
         id: output_step
         run: | 
-          echo "::set-output name=var_step_output::valor"
+          echo "var_step_output=valor" >> $GITHUB_OUTPUT
 
       - name: Imprimir var_Step_output en un paso posterior
         run: |
@@ -50,7 +50,7 @@ jobs:
       - name: Definir output var3 para compartir con otros jobs
         id: set_var3
         run: |
-          echo "::set-output name=var3::3"
+          echo "var3=3" >> $GITHUB_OUTPUT
 
   job4:
     runs-on: ubuntu-latest

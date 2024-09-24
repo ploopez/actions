@@ -21,17 +21,19 @@ jobs:
         id: set-entorno
         run: |
           if [[ "${GITHUB_REF}" == refs/heads/main ]]; then
-            echo "production" > entorno.txt
+            echo "production" >> $GITHUB_ENV
+            echo "entorno=production" >> $GITHUB_ENV
           elif [[ "${GITHUB_REF}" == refs/heads/develop ]]; then
-            echo "development" > entorno.txt
+            echo "development" >> $GITHUB_ENV
+            echo "entorno=development" >> $GITHUB_ENV
           elif [[ "${GITHUB_REF}" == refs/heads/release/* ]]; then
-            echo "staging" > entorno.txt
+            echo "staging" >> $GITHUB_ENV
+            echo "entorno=staging" >> $GITHUB_ENV
           else
             echo "Error: Rama desconocida para despliegue" && exit 1
           fi
 
-          entorno=$(cat entorno.txt)
-          echo "::set-output name=entorno::$entorno"
+          echo "entorno=${GITHUB_ENV}" >> $GITHUB_ENV
 
   desplegar:
     runs-on: ubuntu-latest
